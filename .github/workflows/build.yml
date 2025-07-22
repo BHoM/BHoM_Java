@@ -22,12 +22,9 @@ jobs:
         run: mvn -B -e install -Dapp.version=${GITHUB_REF#refs/heads/}
         env:
           GH: ${{ secrets.GITHUB_TOKEN }}
-      - name: Deploy JavaDoc
-        uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
+      - name: Copy JavaDoc
+        run: cp -r /home/runner/work/BHoM_Java/BHoM_Java/bhom/target/site/apidocs /home/runner/work/BHoM_Java/BHoM_Java/public
+      - name: Deploy Javadoc
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          javadoc-branch: javadoc
-          java-version: 11
-          target-folder: javadoc
-          project: maven
-          custom-command: cp -r /home/runner/work/BHoM_Java/BHoM_Java/bhom/target/site/apidocs ./javadoc
+          github_token: ${{ secrets.GITHUB_TOKEN }}
