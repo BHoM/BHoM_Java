@@ -30,4 +30,4 @@ jobs:
           java-version: 11
           target-folder: javadoc
           project: maven
-          custom-command: cp -r bhom/target/site/apidocs javadoc
+          custom-command: cp -r /home/runner/work/BHoM_Java/BHoM_Java/bhom/target/site/apidocs ./javadoc
